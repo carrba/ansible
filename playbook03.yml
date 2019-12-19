@@ -1,4 +1,4 @@
----- 
+--- 
 
 - hosts: boxes
   gather_facts: true  
