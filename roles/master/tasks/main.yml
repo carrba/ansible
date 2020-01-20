@@ -1,0 +1,6 @@
+---
+# ansible controller tasks. Should run on master
+tasks:  
+  - yum:
+      name: tree
+      state: latest

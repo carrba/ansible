@@ -1,0 +1,46 @@
+--- 
+
+- hosts: web 
+  gather_facts: true  
+  become: yes  
+  become_method: sudo  
+        
+  tasks:    
+    - debug:
+       msg: 
+         - "I am connecting to {{ ansible_nodename }} which is        
+            running {{ ansible_distribution }}        
+            {{ ansible_distribution_version }}"
+         -  "web_package is {{ web_package }}"
+         -  "group_var is {{ mygroupvar }}"
+         -  "host_var is {{ myhostvar }}"
+    - yum:        
+        name: "httpd"        
+        state: "latest"
+      when: ansible_facts['os_family'] == "RedHat"
+    - apt:
+        name: "apache2"
+        state: "latest"
+        update_cache: yes
+      when: ansible_facts['os_family'] == "Debian"
+    
+- hosts: web
+  gather_facts: false
+  become: yes
+  become_method: sudo 
+  handlers:
+    - name: restart_webservice
+      service:
+        name: "{{ web_package }}"
+        state: restarted
+
+  tasks:
+    - name: Start service httpd or apache2, if not started
+      service:
+        name: "{{ web_package }}"
+        state: started
+    - name: template /var/www/html/index.html
+      template:
+        src: ./files/common/web/index.html
+        dest: /var/www/html/index.html
+      

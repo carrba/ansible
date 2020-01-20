@@ -1,0 +1,18 @@
+--- 
+
+- hosts: master 
+  gather_facts: false  
+        
+  tasks:    
+    - name: Create file task
+      file:
+        path: /tmp/foo.conf
+        state: touch
+      register: output
+    - name: Modify file contents
+      lineinfile:
+        path: /tmp/foobar.conf
+        line: "some new text"
+        create: yes
+    - debug:
+            msg: "Register output is {{output}}"        
