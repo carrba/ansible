@@ -1,0 +1,7 @@
+.gitignore.
+ansible.cfg
+ansibleuser.yml
+hosts
+host_vars/
+notes.txt
+sudoers.yml

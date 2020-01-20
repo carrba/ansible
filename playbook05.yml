@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 --- 
 
 - hosts: centos
@@ -18,3 +19,18 @@
         name: "*"
         update_cache: yes
         when: ansible_facts['os_family'] == "Debian"
+=======
+---
+
+- hosts: boxes
+  gather_facts: true
+  become: yes
+  become_method: sudo
+
+  tasks:
+    - debug:
+        msg: "I am connecting to {{ ansible_nodename }} which is running {{ ansible_distribution }} {{ ansible_distribution_version }}"
+    - yum:
+        name: "*"
+        state: "latest"
+>>>>>>> 8349175aa85c565e6ac15d860a066ac1af5bde32
