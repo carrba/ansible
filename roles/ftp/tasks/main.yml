@@ -1,0 +1,4 @@
+---
+- name: Install vsftp
+  yum: name=vsftpd  state=latest
+...

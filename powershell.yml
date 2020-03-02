@@ -1,0 +1,27 @@
+---
+
+- hosts: all
+  gather_facts: false
+  become: yes
+  become_method: sudo
+
+  tasks:
+  - name: Copy microsoft repo file
+    copy:
+      src: files/powershell/microsoft.repo
+      dest: /etc/yum.repos.d/microsoft.repo
+      owner: root
+      group: root
+      mode: '0644'
+  - name: Install powershell-preview package
+    yum:
+      name: powershell-preview
+      state: latest
+  - name: Add Powershell preview path to $path
+    copy:
+      src: files/powershell/ansible-path.sh
+      dest: /etc/profile.d/ansible-path.sh
+      owner: root
+      group: root
+      mode: '0644'
+

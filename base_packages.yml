@@ -1,0 +1,23 @@
+--- 
+
+- hosts: all 
+  gather_facts: true  
+  become: yes  
+  become_method: sudo  
+        
+  tasks:
+    - name: Install common base packages on all via yum
+      yum:
+        state: present        
+        name:
+          - ftp
+          - firewalld 
+      when: ansible_facts['os_family'] == "RedHat"
+
+    - name: Install common base packages on all via apt
+      apt:
+        state: present        
+        name:
+          - ftp
+          - firewalld 
+      when: ansible_facts['os_family'] == "Debian"

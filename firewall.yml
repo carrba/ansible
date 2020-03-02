@@ -1,0 +1,27 @@
+---
+
+- hosts: all
+  gather_facts: false
+  become: yes
+  become_method: sudo
+
+  tasks:
+  - name: Install firewalld
+    yum:
+      name: firewalld
+      state: latest
+
+  - name: Start and enable firewalld
+    systemd:
+      name: firewalld
+      state: started
+      enabled: yes
+  
+  - name: Set firewall rules for nginx
+    firewalld:
+      source: 172.31.28.0/24
+      service: http
+      state: enabled
+    when: ansible_facts['ansible_fqdn'] == "carrb6c.mylabserver.com"
+       
+...

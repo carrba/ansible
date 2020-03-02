@@ -1,0 +1,17 @@
+---
+
+- hosts: all
+  gather_facts: false
+  become: yes
+  become_method: sudo
+
+  tasks:
+  - name: Install nginx package
+    yum:
+      name: nginx
+      state: latest
+  - name: Ensure nginx is enabled running
+    systemd: 
+      state: started
+      enabled: yes
+      name: nginx

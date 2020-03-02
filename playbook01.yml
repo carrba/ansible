@@ -1,0 +1,7 @@
+---
+- hosts: ftp
+  become: true
+  become_method: sudo
+  roles:
+    - ftp
+...
