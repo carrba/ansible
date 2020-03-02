@@ -5,3 +5,4 @@ hosts
 host_vars/
 notes.txt
 sudoers.yml
+*.bac
