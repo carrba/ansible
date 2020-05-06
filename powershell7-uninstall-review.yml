@@ -13,8 +13,15 @@
       owner: root
       group: root
       mode: '0644'
-  - name: Install powershell package
+  - name: Remove powershell-preview package
     yum:
       name: powershell-preview
+      state: absent
+  - name: Install powershell 7 package
+    yum:
+      name: powershell
       state: latest
-
+  - name: Rmove Powershell preview path from $path
+    file:
+      dest: /etc/profile.d/ansible-path.sh
+      state: absent

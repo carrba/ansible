@@ -1,0 +1,2 @@
+ssh-copy-id carrb7c.mylabserver.com
+ansible-playbook sudoers.yml -i hosts --limit carrb7c.mylabserver.com --ask-vault-pass -e "ansible_sudo_pass=password123"

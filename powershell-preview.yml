@@ -13,8 +13,15 @@
       owner: root
       group: root
       mode: '0644'
-  - name: Install powershell package
+  - name: Install powershell-preview package
     yum:
       name: powershell-preview
       state: latest
+  - name: Add Powershell preview path to $path
+    copy:
+      src: files/powershell/ansible-path.sh
+      dest: /etc/profile.d/ansible-path.sh
+      owner: root
+      group: root
+      mode: '0644'
 
