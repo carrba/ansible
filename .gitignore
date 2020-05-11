@@ -1,9 +1,8 @@
-.gitignore.
 ansible.cfg
 ansibleuser.yml
 hosts
 host_vars/
-notes.txt
+*.txt
 sudoers.yml
 *.bac
 *.old
