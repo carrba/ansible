@@ -3,6 +3,5 @@ ansibleuser.yml
 hosts
 host_vars/
 *.txt
-sudoers.yml
 *.bac
 *.old
