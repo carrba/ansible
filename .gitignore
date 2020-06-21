@@ -5,3 +5,4 @@ host_vars/
 *.txt
 *.bac
 *.old
+*hosts
