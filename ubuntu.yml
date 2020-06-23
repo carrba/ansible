@@ -1,0 +1,5 @@
+---
+
+- hosts: all
+  vars:
+    web_package: "apache2"

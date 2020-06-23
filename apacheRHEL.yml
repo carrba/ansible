@@ -1,0 +1,32 @@
+--- 
+
+- hosts:  all
+  gather_facts: true  
+  become: yes  
+  become_method: sudo  
+       
+  tasks:
+    - debug:
+       msg: 
+         - "I am connecting to {{ ansible_nodename }} which is        
+            running {{ ansible_distribution }}"        
+    - name: Install httpd
+      dnf:        
+        name: "httpd"        
+        state: "latest"
+    
+- hosts: all
+  gather_facts: false
+  become: yes
+  become_method: sudo 
+
+  tasks:
+    - name: Start service httpd, if not started
+      service:
+        name: "httpd"
+        state: started
+    - name: template /var/www/html/index.html
+      template:
+        src: ./files/common/web/index.html
+        dest: /var/www/html/index.html
+      

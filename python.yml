@@ -1,0 +1,6 @@
+- hosts: all
+  become: yes
+  gather_facts: no
+  pre_tasks:
+  - name: "Install python2"
+    raw: 'sudo yum -y install python'
